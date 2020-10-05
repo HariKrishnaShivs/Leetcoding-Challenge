@@ -8,19 +8,22 @@ public:
     }
     int removeCoveredIntervals(vector<vector<int>>& intervals) {
         sort(intervals.begin(),intervals.end(),func);
-        priority_queue<int> q;
-        int val=0,n=intervals.size();
+        int val=0,n=intervals.size(),maxval;
         for(int i=0;i<n;i++)
         {
             if(i==0)
-                q.push(intervals[i][1]);
+               maxval=intervals[i][1];
             else
             {
-                if(intervals[i][1]<=q.top())
+                if(intervals[i][1]<=maxval)
                 {
                     val++;
                 }
-                q.push(intervals[i][1]);
+                else
+                {
+                    maxval=intervals[i][1];
+                }
+                //q.push(intervals[i][1]);
             }
         }
         //cout<<val<<endl;
